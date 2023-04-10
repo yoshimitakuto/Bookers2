@@ -1,0 +1,35 @@
+<div class="col-3">
+  <h2>User info</h2>
+    <%= image_tag current_user.get_profile_image(100, 100) %>
+   <table class="mb-4 col-12">
+    <tbody>
+     <tr class="border-top">
+      <th class="p-3">name</th>
+      <th><%= current_user.name %></th>
+     </tr>
+     <tr class="border-top">
+      <th class="p-3">introduction</th>
+      <th><%= current_user.introduction %></th>
+     </tr>
+    </tbody>
+   </table>
+   <div class="row">
+    <%= link_to(edit_user_path(current_user.id), class: 'btn btn-outline-secondary btn-block') do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+    </div>
+    <!--新規投稿フォームの作成-->
+    <%= form_with model: book do |f| %>
+    <!-- @book → book -->
+    <h2 class="mt-3">New book</h2>
+     <div class="book_group mb-3">
+      <div class="book_title mb-2">Title</div>
+        <%= f.text_field :title, class: 'border border-1 rounded col-auto' %>
+     </div>
+     <div class="book_group mb-2">
+      <div class="book_opinion mb-2">Opinion</div>
+       <%= f.text_area :body, class: 'border border-1 rounded col-auto' %>
+      </div>
+      <%= f.submit 'Create Book', class: 'btn btn-success' %>
+   <% end %>
+</div>

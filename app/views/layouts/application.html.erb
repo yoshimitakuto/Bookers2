@@ -2,15 +2,86 @@
 <html>
   <head>
     <title>Bookers2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://kit.fontawesome.com/bda6a2c1b1.js" crossorigin="anonymous"></script>
+
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container">
+       <a class="navbar-brand" href="/"><span class="text-light">Bookers</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                 <li class="nav-item">
+                   <%= link_to(users_path, class: 'text-light p-2') do %>
+                    <i class="fas fa-home" style="color: #ffffff;"></i> Home
+                   <% end %>
+                 </li>
+                 <li class="nav-item">
+                   <%= link_to(users_path, class: 'text-light p-2') do %>
+                    <i class="fas fa-users" style="color: #ffffff;"></i> Users
+                   <% end %>
+                 </li>
+                 <li class="nav-item">
+                   <%= link_to(books_path, class: 'text-light  p-2') do %>
+                    <i class="fas fa-book-open" style="color: #ffffff;"></i> Books
+                   <% end %>
+                 </li>
+                 <li class="nav-item">
+                   <%= link_to(destroy_user_session_path, method: :delete, class: 'text-light p-2') do %>
+                    <i class="fas fa-sign-out-alt" style="color: #ffffff;"></i> Log out
+                   <% end %>
+                 </li>
+                <% else %>
+                 <li class="nav-item">
+                   <%= link_to('/', class: 'text-light p-2') do %>
+                    <i class="fas fa-home" style="color: #ffffff;"></i> Home
+                   <% end %>
+                 </li>
+                 <li class="nav-item">
+                   <%= link_to(about_path, class: 'text-light p-2') do %>
+                    <i class="fas fa-link" style="color: #ffffff;"></i> About
+                   <% end %>
+                 </li>
+                 <li class="nav-item">
+                   <%= link_to(new_user_registration_path, class: 'text-light p-2') do %>
+                    <i class="fas fa-user-plus" style="color: #ffffff;"></i> Sign up
+                   <% end %>
+                 </li>
+                 <li class="nav-item">
+                   <%= link_to(new_user_session_path, class: 'text-light p-2') do %>
+                    <i class="fas fa-sign-in-alt" style="color: #ffffff;"></i> Log in
+                   <% end %>
+                 </li>
+                <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+     <%= yield %>
+    </main>
+    <footer>
+      <div class="container mt-5">
+       <div class="row">
+        <div class="mx-auto">
+          <p>CopyRight Infratop.inc<p>
+        </div>
+       </div>
+      </div>
+    </footer>
   </body>
 </html>
