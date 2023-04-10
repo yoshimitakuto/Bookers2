@@ -1,2 +1,39 @@
+<!--Userinfoの作成-->
+<div class="container mt-3">
+  <div class="row">
+     <!--部分テンプレートの作成-->
+<%= render '/books/sideber', book: @book %>
+
 <h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+ <div class="col-8 ml-auto">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+           <th></th>
+           <th>Title</th>
+           <th>Opinion</th>
+           <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+         <% @books.each do |book| %>
+          <tr>
+           <td>
+           <%= link_to user_path(book.id) do%>
+           <%= image_tag book.user.get_profile_image(100, 100) %>
+           <% end %>
+           </td>
+           <td><%= link_to book.title, book_path(book.id) %></td>
+           <td><%= book.body %></td>
+           <td></td>
+          </tr>
+         <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
