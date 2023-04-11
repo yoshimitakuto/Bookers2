@@ -1,8 +1,17 @@
 <!--Userinfoの作成-->
-<div class="container mt-3">
+<div class="container mt-3 px-0">
+    <% if @book.errors.any? %>
+      <h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+     <% end %>
   <div class="row">
+
      <!--部分テンプレートの作成-->
-    <%= render 'sideber', book: @book %>
+    <%= render 'sideber', book: @book, user: @user %>
     <!--投稿一覧の作成-->
     <div class="col-8 ml-auto">
       <h2>Books</h2>
