@@ -1,0 +1,27 @@
+<div>
+ <%= link_to 'ユーザー一覧へ戻る', users_path %>
+</div>
+
+ <h1 class="title"><%= @userEntry.user.name %>さんとのチャット</h1>
+
+<div class="chats">
+  <div class="chat">
+    <% if @messages.present? %>
+     <% @messages.each do |m| %>
+      <div class="chat-box">
+        <div class="chat-fukidashi">
+          <%= m.body %>
+        </div>
+      </div>
+     <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="chat-posts">
+  <%= form_for @message do |f| %>
+   <%= f.text_field :body, class: 'form-text-field' %>
+   <%= f.hidden_field :room_id, value: @room.id %>
+   <%= f.submit '投稿', class: 'form-submit' %>
+  <% end %>
+</div>

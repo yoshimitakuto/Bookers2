@@ -7,11 +7,14 @@
       <p>you can share and exchange your opinions , inpressions , and emotions</p>
       <p>about various books!</p>
       <div class="button-wrapper col-10 mr-auto ml-auto ">
+       <div class="row">
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+       </div>
       <div class="row">
-       <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-block btn-sm mb-3" %>
+       <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-block btn-sm mb-3 sign_in" %>
       </div>
       <div class="row">
-       <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success btn-block btn-sm" %>
+       <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success btn-block btn-sm sign_up" %>
       </div>
     </div>
    </div>
