@@ -8,7 +8,8 @@
       <h2>Book detail</h2>
       <table class="table font-small">
         <tbody>
-          <tr>
+
+          <tr id="book_<%= @book.id %>">
             <td>
               <%= link_to user_path(@user.id) do %>
                <%= image_tag @book.user.get_profile_image(100, 100) %><br><%= @book.user.name %>
@@ -16,6 +17,7 @@
             </td>
             <td><%= link_to @book.title,  book_path(@book.id) %></td>
             <td><%= @book.body %></td>
+            <td class="comment_counts">コメント数<%= @book.book_comments.count %></td>
             <td>閲覧数<%= @book.view_counts.count %></td>
             <td>
               <% if @book.user == current_user %>
@@ -28,8 +30,22 @@
               <% end %>
             </td>
           </tr>
+
+          <tr class="row comment-index">
+            <%= render 'book_comments/index', book: @book %>
+          </tr>
+
+          <tr class="row comment-form">
+            <td class="col-5">
+              <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
+            </td>
+          </tr>
+
         </tbody>
       </table>
+      
+
+      
     </div>
   </div>
 </div>

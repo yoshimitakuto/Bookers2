@@ -21,6 +21,7 @@
            <th></th>
            <th>Title</th>
            <th>Opinion</th>
+           <th></th>
            <th colspan="3"></th>
           </tr>
         </thead>
@@ -29,6 +30,51 @@
          <%= render 'index', books: @books, book_detail: @book_detail %>
         </tbody>
       </table>
+
+      <h2>投稿数の前日比・前週比</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>今日の投稿数</th>
+            <th>前日の投稿数</th>
+            <th>前日比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @today_books.count %></td>
+            <td><%= @yesterday_books.count %></td>
+            <% if @yesterday_books.count == 0 %>
+             <td>前日の投稿なし</td>
+            <% else %>
+             <td><% @the_day_before = @today_books.count / @yesterday_books.count.to_f %>
+                 <%= (@the_day_before * 100).round %>%</td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>今週の投稿数</th>
+            <th>先週の投稿数</th>
+            <th>前週比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @this_week_books.count %></td>
+            <td><%= @last_week_books.count %></td>
+            <% if @last_week_books.count == 0 %>
+             <td>前週の投稿なし</td>
+            <% else %>
+             <td><% @the_week_before = @this_week_books.count / @last_week_books.count.to_f %>
+                 <%= (@the_week_before * 100).round %>%</td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
   </div>
 </div>

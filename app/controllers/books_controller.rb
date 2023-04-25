@@ -15,6 +15,14 @@ class BooksController < ApplicationController
     unless ViewCount.find_by(user_id: current_user.id, book_id: @books)
       current_user.view_counts.create(book_id: @books)
     end
+
+    #投稿数比較機能
+    @book_creates = Book.all
+    @today_books = @book_creates.created_today
+    @yesterday_books = @book_creates.created_yesterday
+    @this_week_books = @book_creates.created_this_week
+    @last_week_books = @book_creates.created_last_week
+
   end
 
   def create
@@ -38,6 +46,9 @@ class BooksController < ApplicationController
       current_user.view_counts.create(book_id: @book.id)
     end
     @user = @book.user
+
+    #コメント機能
+    @book_comment = BookComment.new
 
   end
 

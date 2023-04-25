@@ -1,0 +1,14 @@
+<td class="col-md-10">
+  <% book.book_comments.each do |book_comment| %>
+   <% if book_comment.user.id == current_user.id %>
+    <p style="text-align: right;"><%= book_comment.user.name %>:<%= book_comment.comment %></p>
+   <% else %>
+    <p style="text-align: left;"><%= book_comment.user.name %>:<%= book_comment.comment %></p>
+   <% end %>
+</td>
+<td class="col-md-2">
+   <% if book_comment.user == current_user %>
+    <%= link_to '削除', book_book_comment_path(book_comment.book, book_comment), method: :delete, remote: true, class: 'btn btn-danger' %>
+   <% end %>
+  <% end %>
+</td>
