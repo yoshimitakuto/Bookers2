@@ -11,6 +11,10 @@ class BooksController < ApplicationController
     @book = Book.new
     # @books = Book.all　※いいねが多い順に並べるためコメントアウト
     @user = current_user
+    #閲覧数
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @books)
+      current_user.view_counts.create(book_id: @books)
+    end
   end
 
   def create
@@ -29,7 +33,12 @@ class BooksController < ApplicationController
   def show
     @book_new = Book.new
     @book = Book.find(params[:id])
+    #閲覧数
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end
     @user = @book.user
+
   end
 
   def edit
