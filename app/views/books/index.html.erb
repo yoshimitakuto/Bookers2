@@ -75,6 +75,61 @@
         </tbody>
       </table>
 
+      <h2>7日間分の投稿数</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>6日前</th>
+            <th>5日前</th>
+            <th>4日前</th>
+            <th>3日前</th>
+            <th>2日前</th>
+            <th>1日前</th>
+            <th>今日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @days6_ago_books.count %></td>
+            <td><%= @days5_ago_books.count %></td>
+            <td><%= @days4_ago_books.count %></td>
+            <td><%= @days3_ago_books.count %></td>
+            <td><%= @days2_ago_books.count %></td>
+            <td><%= @yesterday_books.count %></td>
+            <td><%= @today_books.count %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div>
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+            datasets: [{
+              label: '投稿した本の数',
+              data: [<%= @days6_ago_books.count %>, <%= @days5_ago_books.count %>, <%= @days4_ago_books.count %>, <%= @days3_ago_books.count %>, <%= @days2_ago_books.count %>, <%= @yesterday_books.count %>, <%= @today_books.count %>],
+              borderWidth: 2
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+       </script>
+
     </div>
   </div>
 </div>

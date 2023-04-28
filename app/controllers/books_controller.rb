@@ -20,6 +20,11 @@ class BooksController < ApplicationController
     @book_creates = Book.all
     @today_books = @book_creates.created_today
     @yesterday_books = @book_creates.created_yesterday
+    @days2_ago_books = @book_creates.created_2days
+    @days3_ago_books = @book_creates.created_3days
+    @days4_ago_books = @book_creates.created_4days
+    @days5_ago_books = @book_creates.created_5days
+    @days6_ago_books = @book_creates.created_6days
     @this_week_books = @book_creates.created_this_week
     @last_week_books = @book_creates.created_last_week
 
