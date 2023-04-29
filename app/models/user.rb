@@ -25,6 +25,10 @@ has_many :messages, dependent: :destroy
 #閲覧数
 has_many :view_counts, dependent: :destroy
 
+#グループ作成
+has_many :group_users
+has_many :groups, through: :group_users, dependent: :destroy
+
   has_one_attached :profile_image
 
   validates :name, uniqueness: true, length: { in: 2..20 }

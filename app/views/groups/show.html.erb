@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+   <%= render 'books/sideber', book: @book, user: @user %>
+
+   <div class="col-md-8 offset-md-1">
+    <h2>Group Detail</h2>
+
+    <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th></th>
+          <th>グループ名</th>
+          <th>紹介文</th>
+          <th>メンバー</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= image_tag @group.get_image(100, 100) %></td>
+          <td><%= @group.name %></td>
+          <td><%= @group.introduction %></td>
+          <td>
+            <% @group.users.each do |member| %>
+             <%= member.name %>
+            <% end %>
+          </td>
+          <td>
+            <% if @group.owner_id == current_user.id %>
+             <%= link_to 'Edit', edit_group_path(@group), class: 'btn btn-success btn-sm' %>
+            <% elsif @group.users.include?(current_user) %>
+             <%= link_to 'Leave this group', group_path(@group), method: :delete, class: 'btn btn-danger btn-sm' %>
+            <% else %>
+             <%= link_to 'Join this group', group_join_path(@group),  class: 'btn btn-success btn-sm' %>
+            <% end %>
+          </td>
+          <td>
+            <% if @group.owner_id  == current_user.id %>
+             <%= link_to 'Notice an Event', group_new_mail_path(@group), method: :get, class: 'btn btn-info btn-sm' %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+   </div>
+  </div>
+ </div>

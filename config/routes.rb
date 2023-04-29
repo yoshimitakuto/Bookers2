@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get :followings, on: :member
     get :followers, on: :member
-    post "search", to: "users#search"
+    get "daily_posts" => "users#daily_posts"
   end
   resources :books do
     resources :book_comments, only: [:create, :destroy]
@@ -21,5 +21,11 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :index, :show]
+
+  resources :groups do
+    get "join" => "groups#join"
+    get "new/mail" => "groups#new_mail"
+    get "send/mail" => "groups#send_mail"
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
