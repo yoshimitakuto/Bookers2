@@ -71,6 +71,29 @@
        <div class="book_opinion mb-2">Opinion</div>
         <%= f.text_area :body, class: 'border border-1 rounded col-12 form-control' %>
        </div>
+
+             <!--星レビューフォームの作成-->
+       <div class ="star-review mb-2" id="post_raty">
+        <%= f.label :star %>
+       </div>
+
+       <script>
+         // scriptファイルをどのidの部分に配置するかを指定
+         let elem = document.querySelector('#post_raty');
+         let opt = {
+           size :38,
+           starOff: '<%= asset_path('star-off.png') %>',
+           starOn: '<%= asset_path('star-on.png') %>',
+           scoreName: 'book[star]',
+           half: false
+          };
+         raty(elem,opt);
+       </script>
+
        <%= f.submit 'Create Book', class: 'btn btn-success' %>
+
      <% end %>
+
+
+
 </div>

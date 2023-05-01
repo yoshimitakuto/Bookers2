@@ -11,6 +11,22 @@
        <%= render 'favorites/btn', book: book %>
      </td>
      <td class="comment_counts">コメント数<%= book.book_comments.count %></td>
+     <td>
+       <div class="review-star"></div>
+     </td>
+          <script>
+              elem = document.querySelector('#book_<%= book.id %> .review-star');
+              opt = {
+               size :38,
+               starOff: '<%= asset_path('star-off.png') %>',
+               starOn: '<%= asset_path('star-on.png') %>',
+               half: false,
+               readOnly: true,
+               score: '<%= book.star %>'
+              };
+             raty(elem,opt);
+          </script>
+
      <td class="view_counts">閲覧数<%= book.view_counts.count %></td>
   </tr>
 <% end %>

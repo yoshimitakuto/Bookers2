@@ -25,6 +25,22 @@
            </td>
            <td><%= link_to book.title, book_path(book.id) %></td>
            <td><%= book.body %></td>
+           <td>
+             <div class="star" id="review-star<%= book.id %>"></div>
+           </td>
+                <script>
+                    elem = document.querySelector('#review-star<%= book.id %>');
+                    opt = {
+                     size :38,
+                     starOff: '<%= asset_path('star-off.png') %>',
+                     starOn: '<%= asset_path('star-on.png') %>',
+                     half: false,
+                     readOnly: true,
+                     score: '<%= book.star %>'
+                    };
+                   raty(elem,opt);
+                </script>
+
            <td></td>
           </tr>
          <% end %>
