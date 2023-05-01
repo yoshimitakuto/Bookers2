@@ -71,6 +71,11 @@
        <div class="book_opinion mb-2">Opinion</div>
         <%= f.text_area :body, class: 'border border-1 rounded col-12 form-control' %>
        </div>
+       
+       <div class="book_group mb-3">
+        <div class="book_opinion mb-2">Tag</div>
+         <%= f.text_field(:tag_id)%>
+       </div>
 
              <!--星レビューフォームの作成-->
        <div class ="star-review mb-2" id="post_raty">

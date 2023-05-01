@@ -10,6 +10,10 @@ class Book < ApplicationRecord
   #閲覧数
   has_many :view_counts, dependent: :destroy
 
+  #タグ機能
+  has_many :book_tag_relations, dependent: :destroy
+  has_many :tags, through: :book_tag_relations, dependent: :destroy
+
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
 
@@ -27,7 +31,7 @@ class Book < ApplicationRecord
  scope :created_6days, -> { where(created_at: 6.day.ago.all_day)}
  scope :created_this_week, -> { where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day) }
  scope :created_last_week, -> { where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day) }
- 
+
  scope :latest, -> { order(created_at: :desc) }
  scope :star_count, -> { order(star: :desc) }
 
