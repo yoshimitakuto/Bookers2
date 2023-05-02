@@ -1,4 +1,8 @@
 class Book < ApplicationRecord
+
+  #タグ機能
+  acts_as_taggable_on :tags
+
   belongs_to :user
   has_one_attached :profile_image
   has_many :favorites, dependent: :destroy
@@ -11,8 +15,8 @@ class Book < ApplicationRecord
   has_many :view_counts, dependent: :destroy
 
   #タグ機能
-  has_many :book_tag_relations, dependent: :destroy
-  has_many :tags, through: :book_tag_relations
+  # has_many :book_tag_relations, dependent: :destroy
+  # has_many :tags, through: :book_tag_relations
   # accepts_nested_attributes_for :book_tag_relations, allow_destroy: true
   # accepts_nested_attributes_for :tags
 

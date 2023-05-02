@@ -17,6 +17,10 @@ class BooksController < ApplicationController
     end
 
     @book = Book.new
+    # if params[:tag_name]
+    #   @books = Book.tagged_with("#{params[:tag_name]}")
+    # end
+    
     # @books = Book.all　※いいねが多い順に並べるためコメントアウト
     @user = current_user
     #閲覧数
@@ -88,7 +92,7 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title, :body, :star)
+    params.require(:book).permit(:title, :body, :star, :tag_list)
   end
 
   def correct_user
