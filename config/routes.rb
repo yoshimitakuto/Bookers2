@@ -29,5 +29,6 @@ Rails.application.routes.draw do
   end
 
   resources :tags
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get "search" => "tags#search"
+  # For details on the DS,L available within this file, see https://guides.rubyonrails.org/routing.html
 end

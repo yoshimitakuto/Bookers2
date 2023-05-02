@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     # if params[:tag_name]
     #   @books = Book.tagged_with("#{params[:tag_name]}")
     # end
-    
+
     # @books = Book.all　※いいねが多い順に並べるためコメントアウト
     @user = current_user
     #閲覧数

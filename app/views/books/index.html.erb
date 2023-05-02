@@ -14,6 +14,9 @@
     <%= render 'sideber', book: @book, user: @user %>
     <!--投稿一覧の作成-->
     <div class="col-md-8 offset-md-1">
+
+     <%= render 'tags/search', book: @book %>
+
       <h2>Books</h2>
       <%= link_to '新しい順', books_path(latest: "true") %>｜<%= link_to '評価の高い順', books_path(star_count: "true") %>
       <table class="table table-hover table-inverse">
