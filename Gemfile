@@ -70,3 +70,5 @@ gem "net-smtp"
 gem 'jquery-rails'
 
 gem "chartkick"
+
+gem 'acts-as-taggable-on', '~>9.0'

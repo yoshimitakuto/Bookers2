@@ -12,7 +12,9 @@ class Book < ApplicationRecord
 
   #タグ機能
   has_many :book_tag_relations, dependent: :destroy
-  has_many :tags, through: :book_tag_relations, dependent: :destroy
+  has_many :tags, through: :book_tag_relations
+  # accepts_nested_attributes_for :book_tag_relations, allow_destroy: true
+  # accepts_nested_attributes_for :tags
 
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
